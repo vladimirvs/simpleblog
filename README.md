@@ -1,0 +1,2 @@
+# simpleblog
+Simplest possible blog
