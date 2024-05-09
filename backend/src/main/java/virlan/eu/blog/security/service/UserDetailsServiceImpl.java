@@ -10,6 +10,8 @@ import virlan.eu.blog.model.User;
 import virlan.eu.blog.repository.UserRepository;
 import virlan.eu.blog.security.model.UserDetailsImpl;
 
+import java.util.Optional;
+
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final UserRepository securityUserRepository;
@@ -22,5 +24,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User securityUser = securityUserRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found with username" + username));
         return UserDetailsImpl.build(securityUser);
+    }
+
+    public Optional<User> findByUsername(String username) {
+        return securityUserRepository.findByUsername(username);
     }
 }
