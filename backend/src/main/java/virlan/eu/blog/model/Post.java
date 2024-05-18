@@ -14,6 +14,7 @@ public class Post {
     private Long id;
     private String title;
     private String contents;
+    private String summary;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
 

@@ -35,7 +35,7 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-   // @JsonIgnore
+    @JsonIgnore
     @JsonIgnoreProperties("author") // Ignore Hibernate proxy during serialization
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Post> posts;

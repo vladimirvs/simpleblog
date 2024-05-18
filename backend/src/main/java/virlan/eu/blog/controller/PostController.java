@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 import virlan.eu.blog.model.Post;
 import virlan.eu.blog.model.User;
@@ -48,5 +47,11 @@ public class PostController {
         Optional<Post> saved = postService.createPost(post);
         log.info("Created post: {}", saved);
         return ResponseEntity.of(saved);
+    }
+
+    @GetMapping("/{postId}")
+    public ResponseEntity<Post> getPost(@PathVariable("postId") Long postId) {
+        log.info("Getting post by ID: {}", postId);
+        return ResponseEntity.of(postRepository.findById(postId));
     }
 }
